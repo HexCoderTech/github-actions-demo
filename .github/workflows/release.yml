@@ -1,4 +1,4 @@
-name: Pull Request CD
+name: Release to Prod
 
 on:
   release:
