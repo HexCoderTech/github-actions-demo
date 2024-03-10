@@ -24,7 +24,7 @@ def test_format_weather():
     city = "Seattle"
     data = {"weather": [{"description": "rainy"}], "main": {"temp": 10}}
     expected = (
-                "The  weather in Seattle is rainy "
+                "The weather in Seattle is rainy "
                 "with a temperature of 10 Celcius."
                 )
     assert format_weather(city, data) == expected
