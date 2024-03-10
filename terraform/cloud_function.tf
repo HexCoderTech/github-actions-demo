@@ -7,6 +7,7 @@ resource "google_storage_bucket" "cloudfunctions_bucket" {
 
 data "archive_file" "weather_service_file" {
   type        = "zip"
+  provider    = google-beta
   output_path = "${path.module}/.files/weather_service.zip"
   source {
     content  = file("${local.src_dir}/api/main.py")
