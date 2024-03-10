@@ -1,0 +1,27 @@
+name: Release to Prod
+
+on:
+  release:
+    types:
+      - "released"
+
+jobs:
+  terraform:
+    name: terraform
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - uses: hashicorp/setup-terraform@v3
+    - name: Terraform
+      id: credentials
+      run: |
+        # Get GCP credentials
+        echo "${KEY}" | base64 -d > ~/key.json
+        export GOOGLE_APPLICATION_CREDENTIALS=~/key.json
+        cd terraform
+        terraform init && terraform validate 
+        terraform workspace new prod || terraform workspace select prod
+        terraform apply -auto-approve
+      env:
+        KEY: ${{secrets.SERVICE_ACCOUNT}}
+        GOOGLE_APPLICATION_CREDENTIALS: ~/key.json
