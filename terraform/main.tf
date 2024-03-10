@@ -1,6 +1,6 @@
 terraform {
   backend "gcs" {
-    bucket = "adopt-a-book-terraform-state"
+    bucket   = "adopt-a-book-terraform-state"
     prefix = "terraform/edge"
   }
   required_providers {
