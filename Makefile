@@ -8,6 +8,8 @@ dev:
 test:
 	PYTHONPATH=src/ pytest tests/
 
-lint:
+pylint:
 	flake8 src/ tests/
+
+tflint:
 	tflint terraform/
