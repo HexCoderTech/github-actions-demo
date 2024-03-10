@@ -12,6 +12,15 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - uses: hashicorp/setup-terraform@v3
+    - name: Get GCP Keys
+      id: credentials
+      run: |
+        # Get GCP credentials
+        echo "${KEY}" | base64 -d > ~/key.json
+        export GOOGLE_APPLICATION_CREDENTIALS=~/key.json
+      env:
+        KEY: ${{secrets.SERVICE_ACCOUNT}}
+        GOOGLE_APPLICATION_CREDENTIALS: ~/key.json
     - name: Terraform Init
       id: init
       run: |
