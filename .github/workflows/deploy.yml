@@ -1,0 +1,23 @@
+name: Pull Request CD
+
+on:
+   push:
+     branches:
+       - main 
+
+jobs:
+  terraform:
+    name: terraform
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - uses: hashicorp/setup-terraform@v3
+    - name: Terraform Init
+      id: init
+      run: |
+        cd terraform
+        terraform init
+    - name: Terraform Apply
+      id: apply
+      run: |
+        terraform validate && terraform apply -auto-approve
