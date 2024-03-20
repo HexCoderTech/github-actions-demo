@@ -28,14 +28,14 @@ def get_lat_lon(city):
         lon = data[0]["lon"]
         return lat, lon
     else:
-        print("Failed to      retrieve latitude and longitude.", data)
+        print("Failed to retrieve latitude and longitude.", data)
         return None, None
 
 
 def get_weather(city):
     lat, lon = get_lat_lon(city)
     if lat is None or lon is None:
-        return False, f"Failed to  retrieve weather information for {city}."
+        return False, f"Failed to retrieve weather information for {city}."
 
     print(f"Got Lat Lon for {city}: {lat}, {lon}")
     url = (
