@@ -28,7 +28,7 @@ def get_lat_lon(city):
         lon = data[0]["lon"]
         return lat, lon
     else:
-        print("Failed to retrieve latitude and longitude.", data)
+        print("Failed to retrieve latitude and longitude!", data)
         return None, None
 
 
