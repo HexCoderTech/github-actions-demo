@@ -1,7 +1,7 @@
 import requests
 
 
-api_key = "KEY"
+api_key = "cd1eff4013258e333edc69bb570100ab"
 
 
 def format_weather(city: str, data: dict) -> str:
@@ -28,7 +28,7 @@ def get_lat_lon(city):
         lon = data[0]["lon"]
         return lat, lon
     else:
-        print("Failed to retrieve latitude and longitude.", data)
+        print("Failed to retrieve latitude and longitude!", data)
         return None, None
 
 
