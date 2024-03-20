@@ -1,7 +1,7 @@
 import requests
 
 
-api_key = "KEY"
+api_key = "cd1eff4013258e333edc69bb570100ab"
 
 
 def format_weather(city: str, data: dict) -> str:
