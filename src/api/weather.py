@@ -1,17 +1,14 @@
 import requests
 
-
-api_key = "KEY"
-
+api_key = "YOUR_API_KEY"
 
 def format_weather(city: str, data: dict) -> str:
     weather = data["weather"][0]["description"]
     temperature = data["main"]["temp"]
     return (
         f"The weather in {city} is {weather} "
-        f"with a temperature of {temperature} Celcius."
+        f"with a temperature of {temperature} Celsius."
     )
-
 
 def get_lat_lon(city):
     url = (
@@ -30,7 +27,6 @@ def get_lat_lon(city):
     else:
         print("Failed to retrieve latitude and longitude.", data)
         return None, None
-
 
 def get_weather(city):
     lat, lon = get_lat_lon(city)
@@ -52,7 +48,6 @@ def get_weather(city):
     else:
         print("Failed to retrieve weather information.", data)
         return False, "Failed to retrieve weather information."
-
 
 if __name__ == "__main__":
     city = "Munich"
