@@ -1,41 +1,25 @@
-name: Pull Request Preview
+name: Pull Request CD
 
 on:
-  pull_request:
-    branches:
-      - main
+   push:
+     branches:
+       - main 
 
 jobs:
-  terraform-plan:
+  terraform:
+    name: terraform
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
-
-      - name: Set up Terraform
-        uses: hashicorp/setup-terraform@v3
-        with:
-          terraform_version: '1.7.4'
-
-      # Authenticates to GCP (required to check GCS backend and run plan checks)
-      - name: Authenticate to Google Cloud
-        uses: google-github-actions/auth@v2
-        with:
-          credentials_json: ${{ secrets.GCP_SA_KEY }}
-
-      - name: Terraform Format Check
-        run: terraform fmt -check
-        working-directory: ./terraform
-
-      - name: Terraform Init
-        run: terraform init
-        working-directory: ./terraform
-
-      - name: Terraform Validate
-        run: terraform validate
-        working-directory: ./terraform
-
-      - name: Terraform Plan (Preview Changes)
-        run: terraform plan
-        working-directory: ./terraform
+    - uses: actions/checkout@v4
+    - uses: hashicorp/setup-terraform@v3
+    - name: Terraform
+      id: credentials
+      run: |
+        # Get GCP credentials
+        echo "${KEY}" | base64 -d > ~/key.json
+        export GOOGLE_APPLICATION_CREDENTIALS=~/key.json
+        cd terraform
+        terraform init && terraform validate && terraform apply -auto-approve
+      env:
+        KEY: ${{secrets.SERVICE_ACCOUNT}}
+        GOOGLE_APPLICATION_CREDENTIALS: ~/key.json

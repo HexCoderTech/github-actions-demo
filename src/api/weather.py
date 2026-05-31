@@ -9,7 +9,7 @@ def format_weather(city: str, data: dict) -> str:
     temperature = data["main"]["temp"]
     return (
         f"The weather in {city} is {weather} "
-        f"with a temperature of {temperature} Celsius."
+        f"with a temperature of {temperature} Celcius."
     )
 
 
