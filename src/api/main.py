@@ -9,7 +9,7 @@ def handle_request(request):
     if request.method == "GET":
         city = request.args.get("city")
         if not city:
-            return abort(404, "Please provide a city.")
+            return abort(404, "Please proivide a city.")
 
         success, response = get_weather(city)
         if success:
