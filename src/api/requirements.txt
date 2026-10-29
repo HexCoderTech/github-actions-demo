@@ -1,1 +1,7 @@
+<<<<<<< HEAD
 requests==2.31.0
+=======
+requests>=2.32.4,<3
+functions-framework>=3.0,<4
+flask>=2.0,<4
+>>>>>>> main

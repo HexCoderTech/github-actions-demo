@@ -23,5 +23,5 @@ jobs:
         terraform workspace new prod || terraform workspace select prod
         terraform apply -auto-approve
       env:
-        KEY: ${{secrets.SERVICE_ACCOUNT}}
+        KEY: ${secrets.SERVICE_ACCOUNT}
         GOOGLE_APPLICATION_CREDENTIALS: ~/key.json

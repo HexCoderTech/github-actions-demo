@@ -9,7 +9,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Set up Python 3.11
-        uses: actions/setup-python@v3
+        uses: actions/setup-python@v5
       - name: Install dependencies
         id: dependencies
         run: |
@@ -27,6 +27,8 @@ jobs:
     steps:
     - uses: actions/checkout@v4
       name: Checkout source code
+
+    - uses: hashicorp/setup-terraform@v3
 
     - uses: actions/cache@v4
       name: Cache plugin dir
